@@ -12,24 +12,28 @@ const Login = ({ authService }) => {
             state: { id: userId },
         });
     };
-
-    const onLogin = (event) => {
-        authService
-            .login(event.currentTarget.textContent)
-            .then((data) => goToMaker(data.user.uid));
-    };
-
     useEffect(() => {
         authService.onAuthChange((user) => {
             user && goToMaker(user.uid);
         });
-    });
+    }, []);
+
+    const onLogin = (event) => {
+        authService.login(event.currentTarget.textContent).then((result) => {
+            console.log(result.user);
+            //라우터로 maker로 보내는거 추가
+        });
+    };
+
+    const onLogout = () => {
+        authService.logout();
+    };
 
     return (
         <section className={styles.login}>
-            <Header />
+            <Header onLogout={onLogout} />
             <section>
-                <h1>Login</h1>
+                <h1>log in</h1>
                 <ul className={styles.list}>
                     <li className={styles.item}>
                         <button className={styles.button} onClick={onLogin}>

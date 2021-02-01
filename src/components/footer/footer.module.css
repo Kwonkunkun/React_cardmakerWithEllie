@@ -1,4 +1,4 @@
-@value makerWhite, makerGreen from '../../common/colors.css';
+@value makerGreen, makerWhite from '../../common/colors.css';
 
 .footer {
     width: 100%;
@@ -6,6 +6,6 @@
     text-align: center;
 }
 
-.title {
+.comment {
     color: makerWhite;
 }

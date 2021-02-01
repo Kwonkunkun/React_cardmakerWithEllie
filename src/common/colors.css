@@ -6,3 +6,6 @@
 @value makerGrey: #626262;
 @value makerGreen: #385461;
 @value makerblue: #1cb6e0;
+@value makerShadow: rgba(217, 217, 217, 1);
+@value makerColorful: linear-gradient(90deg, rgba(207,86,189,1) 0%, rgba(196,217,70,1) 47%, rgba(0,212,255,1) 100%);
+@value makerWheat: wheat;

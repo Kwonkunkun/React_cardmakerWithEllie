@@ -1,7 +1,6 @@
 import firebase from "firebase";
-import firebaseApp from "./firebase";
+import firebaseApp from "./firebase.js";
 
-//로그인 로그아웃
 class AuthService {
     login(providerName) {
         const authProvider = new firebase.auth[`${providerName}AuthProvider`]();

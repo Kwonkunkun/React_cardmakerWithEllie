@@ -4,13 +4,13 @@ import styles from "./header.module.css";
 const Header = ({ onLogout }) => {
     return (
         <header className={styles.header}>
+            <img className={styles.logo} src="/images/logo.png" alt="" />
+            <div className={styles.title}>Card Maker</div>
             {onLogout && (
                 <button className={styles.logout} onClick={onLogout}>
-                    Logout
+                    logout
                 </button>
             )}
-            <img className={styles.log} src="/images/logo.png" alt="logo" />
-            <h1 className={styles.title}>Business Card Maker</h1>
         </header>
     );
 };

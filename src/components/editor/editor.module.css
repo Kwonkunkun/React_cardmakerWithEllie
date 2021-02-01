@@ -1,8 +1,8 @@
 @value makerGreen from '../../common/colors.css';
 
 .editor {
+    background-color: violet;
     flex-basis: 50%;
-    background-color: pink;
 }
 
 .title {
