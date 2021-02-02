@@ -1,11 +1,12 @@
 import React, { useState } from "react";
+import { useHistory } from "react-router-dom";
 import Editor from "../editor/editor";
 import Footer from "../footer/footer";
 import Header from "../header/header";
 import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
-const Maker = (props) => {
+const Maker = ({ authService }) => {
     const [cards, setCards] = useState([
         {
             id: "1",
@@ -20,11 +21,25 @@ const Maker = (props) => {
         },
     ]);
 
+    const history = useHistory();
+    const onLogout = () => {
+        authService.onAuthChange((user) => {
+            if (!user) {
+                history.push("/");
+            }
+        });
+    };
+
+    const addCard = (card) => {
+        const updated = [...cards, card];
+        setCards(updated);
+    };
+
     return (
         <div className={styles.maker}>
-            <Header />
+            <Header onLogout={onLogout} />
             <section className={styles.contents}>
-                <Editor cards={cards} />
+                <Editor cards={cards} addCard={addCard} />
                 <Preview cards={cards} />
             </section>
             <Footer />
