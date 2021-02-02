@@ -7,8 +7,8 @@ import Preview from "../preview/preview";
 import styles from "./maker.module.css";
 
 const Maker = ({ authService }) => {
-    const [cards, setCards] = useState([
-        {
+    const [cards, setCards] = useState({
+        1: {
             id: "1",
             name: "kwon",
             company: "Samsung",
@@ -19,7 +19,7 @@ const Maker = ({ authService }) => {
             fileName: "kwon",
             fileURL: null,
         },
-    ]);
+    });
 
     const history = useHistory();
     const onLogout = () => {
@@ -29,17 +29,32 @@ const Maker = ({ authService }) => {
             }
         });
     };
+    const CreateOrUpdateCard = (card) => {
+        setCards((cards) => {
+            const updated = { ...cards };
+            updated[card.id] = card;
+            return updated;
+        });
+    };
 
-    const addCard = (card) => {
-        const updated = [...cards, card];
-        setCards(updated);
+    const deleteCard = (card) => {
+        setCards((cards) => {
+            const updated = { ...cards };
+            delete updated[card.id];
+            return updated;
+        });
     };
 
     return (
         <div className={styles.maker}>
             <Header onLogout={onLogout} />
             <section className={styles.contents}>
-                <Editor cards={cards} addCard={addCard} />
+                <Editor
+                    cards={cards}
+                    addCard={CreateOrUpdateCard}
+                    updateCard={CreateOrUpdateCard}
+                    deleteCard={deleteCard}
+                />
                 <Preview cards={cards} />
             </section>
             <Footer />
